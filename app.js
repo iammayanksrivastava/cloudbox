@@ -95,43 +95,43 @@ passport.use(
 );
 
 
-//Passport Slack Strategy
-passport.use(
-  new SlackStrategy(
-    {
-      clientID: "2432150752.1063707573680",
-      clientSecret: "9a6ea7dc42e73d1a74f7fdb0c6cbf89b",
-      callbackURL: "/auth/slack/callback"
-    },
-    (accessToken, refreshToken, profile, done) => {
-      // to see the structure of the data in received response:
-      console.log("Slack account details:", profile);
+// //Passport Slack Strategy
+// passport.use(
+//   new SlackStrategy(
+//     {
+//       clientID: "2432150752.1063707573680",
+//       clientSecret: "9a6ea7dc42e73d1a74f7fdb0c6cbf89b",
+//       callbackURL: "/auth/slack/callback"
+//     },
+//     (accessToken, refreshToken, profile, done) => {
+//       // to see the structure of the data in received response:
+//       console.log("Slack account details:", profile);
 
-      User.findOne({ slackID: profile.id })
-        .then(user => {
-          if (user) {
-            done(null, user);
-            return;
-          }
+//       User.findOne({ slackID: profile.id })
+//         .then(user => {
+//           if (user) {
+//             done(null, user);
+//             return;
+//           }
 
-          User.create({ slackID: profile.id, displayName: profile.displayName})
-            .then(newUser => {
-              done(null, newUser);
-            })
-            .catch(err => done(err)); // closes User.create()
-        })
-        .catch(err => done(err)); // closes User.findOne()
-    }
-  )
-);
+//           User.create({ slackID: profile.id, displayName: profile.displayName})
+//             .then(newUser => {
+//               done(null, newUser);
+//             })
+//             .catch(err => done(err)); // closes User.create()
+//         })
+//         .catch(err => done(err)); // closes User.findOne()
+//     }
+//   )
+// );
 
 
 //Google Login Strategy
 passport.use(
   new GoogleStrategy(
     {
-      clientID: "791705976611-8lgnefdmmpk4fnhcipiejkik8ebtl3fc.apps.googleusercontent.com",
-      clientSecret: "jsSC9u3SS7F3pE7WAty0QSsm",
+      clientID: process.env.client_id,
+      clientSecret: process.env.clientSecret,
       callbackURL: "/auth/google/callback"
     },
     (accessToken, refreshToken, profile, done) => {
