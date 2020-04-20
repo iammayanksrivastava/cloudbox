@@ -23,7 +23,7 @@ const photo     = require('./models/photo')
 
 
 mongoose
-  .connect('mongodb+srv://mayank:residency18@cluster0-pu5tf.azure.mongodb.net/photobook', {useNewUrlParser: true})
+  .connect(process.env.mongodb_uri, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
