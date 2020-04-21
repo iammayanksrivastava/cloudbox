@@ -28,19 +28,16 @@
     <div  class="row">
         {{#each photos}}
         <div id ='divname-{{id}}'class="card bg-white m-5 h-100 border-0" style="width: 250px">
-            <figure>
+                <textarea disabled id = "linkText" class="copytextarea" style="border: none";>{{this.imgPath}}</textarea>
                 <img class="card-img-top beerimage card-img-left zoom" src={{this.imgPath}} alt="" class="img-fluid">
                 <div class="card-header border-0 bg-dark text-light text-small" align="center">
                     <div class="bg-dark" align="center"><a href="{{this.imgPath}}" download="{{this.originalname}}">
                         <button class="btn cbtn"><i class="fa fa-download"></i></button></a>
                         <button id = "copyLinkBtn" class= "copybtn btn cbtn"><i class="fa fa-copy"></i></button>
-                        <textarea id = "linkText" class="copytextarea" style="display:none;">{{this.imgPath}}</textarea>
                         <button id="trash" class="btn cbtn"><i class="fa fa-trash"></i></button>
                     </div>
                 </div>
         </div>
-        </figure>
-
         {{/each}}
     </div>
 </div>

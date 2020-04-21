@@ -2,14 +2,13 @@ var copyTextareaBtn = document.querySelector("#copyButton");
 console.log(copyTextareaBtn);
 
 
-for (var i=0, max =copyTextareaBtn.clientHeight; i<max; i++){
-  copyTextareaBtn.addEventListener("click", copyLink, false)
-}
+copyTextareaBtn.addEventListener("click", copyLink, false)
 
 
 function copyLink(e){
   if (e.target !== e.currentTarget) {
-    var copyTextarea = document.querySelector(".copytextarea");
+    const copyTextarea = e.target.parentNode.parentNode.parentNode.parentNode.firstChild.nextSibling
+  
     console.log(copyTextarea);
     copyTextarea.focus();
     copyTextarea.select();
