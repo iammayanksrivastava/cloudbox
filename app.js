@@ -149,7 +149,8 @@ passport.use(
             googleID: profile.id,
             username: profile.emails[0].value,
             displayName: profile.displayName,
-            photo: profile.photos[0].value
+            photo: profile.photos[0].value,
+            email: profile.emails[0].value,
           })
             .then(newUser => {
               done(null, newUser);
